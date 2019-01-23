@@ -1,0 +1,49 @@
+<h1>{{ pageTitle }}</h1>
+
+<div>
+    <div class="listcontainer" *ngIf="categList.length > 0">
+        <!-- <li *ngFor="let todo of todos" [class.completed]="todo.complete">
+                      <div class="view">
+                        <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
+                        <label>{{todo.title}}</label>
+                        <button class="destroy" (click)="removeTodo(todo)"></button>
+                      </div>
+                    </li> -->
+        <ul class="todo-list" *ngIf="categList">
+            <div class="view">
+                <li *ngFor="let categ of categList">
+                    <!-- <label>{{ categ.name }}</label> -->
+                    <label [ngStyle]="{'background-color':categ.backgroundColor}" (click)="itemSelected(categ)">{{ categ.name }}</label>
+                    <button class="destroy" (click)="removeCateg(categ)"></button>
+                </li>
+            </div>
+        </ul>
+        <!-- <ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-balham" [gridOptions]="gridOptions">
+        </ag-grid-angular> -->
+    </div>
+
+    <div style="float: right; margin-left: 200px;">
+        <input type="button" value="New Category" (click)="newCategory()">
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+            <label>
+                Category Name
+                <input type="text" formControlName="name" id="txtCategName" name="txtCategName">
+                <div *ngIf="txtCategName.invalid && (txtCategName.dirty || txtCategName.touched)" class="error">
+                    <div *ngIf="txtCategName.errors.required">Category Name is required</div>
+                    <div *ngIf="txtCategName.errors.minlength">Category Name should be minimum
+                        {{txtCategName.errors.minlength.requiredLength}} characters</div>
+                </div>
+            </label>
+
+            <label>
+                Background Color
+                <input type="color" formControlName="backgroundColor">
+                <div *ngIf="isSubmitteds && categoryForm.controls.backgroundColor.errors" class="error">
+                    <div *ngIf="categoryForm.controls.backgroundColor.errors.required">Background Color is required</div>
+                </div>
+            </label>
+
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</div>
