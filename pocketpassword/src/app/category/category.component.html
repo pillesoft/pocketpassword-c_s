@@ -11,10 +11,11 @@
                     </li> -->
         <ul class="todo-list" *ngIf="categList">
             <div class="view">
-                <li *ngFor="let categ of categList">
+                <li *ngFor="let categ of categList" [ngStyle]="{'background-color':categ.backgroundColor}" (click)="itemSelected(categ)" title="Click to Update">
+                    {{ categ.name }}
                     <!-- <label>{{ categ.name }}</label> -->
-                    <label [ngStyle]="{'background-color':categ.backgroundColor}" (click)="itemSelected(categ)">{{ categ.name }}</label>
-                    <button class="destroy" (click)="removeCateg(categ)"></button>
+                    <!-- <label [ngStyle]="{'background-color':categ.backgroundColor}" (click)="itemSelected(categ)">{{ categ.name }}</label> -->
+                    <button class="destroy" (click)="removeCateg(categ)" title="Delete"></button>
                 </li>
             </div>
         </ul>
