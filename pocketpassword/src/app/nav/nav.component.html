@@ -1,12 +1,16 @@
-<header>
-  <div class="container">
-    <a routerLink="/" class="logo">{{ appTitle }}</a>
-    <nav>
-      <ul>
-        <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/auth">Authentications</a></li>
-        <li><a routerLink="/category">Categories</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<div class="container">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <a routerLink="/" class="navbar-brand">{{ appTitle }}</a>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
+      <div class="nav nav-pills">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/auth">Authentications</a>
+        <a class="nav-item nav-link" routerLink="/category">Categories</a>
+      </div>
+    <!-- </div> -->
+  </nav>
+</div>

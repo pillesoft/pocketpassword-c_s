@@ -7,15 +7,18 @@ import { CategoryComponent } from './category/category.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    pathMatch: 'full'
   },
   {
     path: 'auth',
-    component: AuthenticationComponent
+    component: AuthenticationComponent,
+    pathMatch: 'full'
   },
   {
     path: 'category',
-    component: CategoryComponent
+    component: CategoryComponent,
+    pathMatch: 'full'
   },
 ];
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GridOptions } from 'ag-grid-community';
+// import { GridOptions } from 'ag-grid-community';
 import { Category } from '../models/category';
 import { CategoryService } from './category.service';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 import { CrudType } from "./crudtype.enum";
 
 @Component({
@@ -16,11 +16,13 @@ export class CategoryComponent implements OnInit {
 
   categList: Category[];
 
-  gridOptions: GridOptions;
+  // gridOptions: GridOptions;
   categoryForm: FormGroup;
   currentCategory: Category;
   crudType: CrudType = CrudType.CREATE;
   isSubmitted: boolean = false;
+  submitTitle: string = 'Save';
+  isReadOnly: boolean = false;
 
   columnDefs = [
     { headerName: 'Category Name', field: 'name' },
@@ -30,24 +32,23 @@ export class CategoryComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private categService: CategoryService) { 
     this.categList = categService.getData();
 
-    this.gridOptions = <GridOptions> {
-      onSelectionChanged: params => {
-        console.log(params.api.getSelectedRows());
-        this.currentCategory = params.api.getSelectedRows()[0];
+    // this.gridOptions = <GridOptions> {
+    //   onSelectionChanged: params => {
+    //     console.log(params.api.getSelectedRows());
+    //     this.currentCategory = params.api.getSelectedRows()[0];
 
-        this.categoryForm.setValue(this.currentCategory);
-        this.crudType = CrudType.UPDATE;
-        this.isSubmitted = false;
-      },
-      rowData: categService.getData(),
-      columnDefs: this.columnDefs,
-      enableCellChangeFlash: true,
-      rowSelection: 'single',
-      getRowStyle: function(param) {
-        return { background: param.data.backgroundColor }
-      }
-
-    };
+    //     this.categoryForm.setValue(this.currentCategory);
+    //     this.crudType = CrudType.UPDATE;
+    //     this.isSubmitted = false;
+    //   },
+    //   rowData: categService.getData(),
+    //   columnDefs: this.columnDefs,
+    //   enableCellChangeFlash: true,
+    //   rowSelection: 'single',
+    //   getRowStyle: function(param) {
+    //     return { background: param.data.backgroundColor }
+    //   }
+    // };
   }
 
   ngOnInit() {
@@ -65,6 +66,9 @@ export class CategoryComponent implements OnInit {
     this.categoryForm.setValue(this.currentCategory);
     this.crudType = CrudType.UPDATE;
     this.isSubmitted = false;
+    this.submitTitle = 'Save';
+    this.isReadOnly = false;
+    console.log('item select', item.name, this.submitTitle, this.isReadOnly);
   }
 
   newCategory() {
@@ -72,10 +76,11 @@ export class CategoryComponent implements OnInit {
     this.categoryForm.setValue(this.currentCategory);
     this.crudType = CrudType.CREATE;
     this.isSubmitted = false;
+    this.submitTitle = 'Save';
   }
 
   onSubmit() {
-    console.log(this.categoryForm);
+    //console.log(this.categoryForm);
     this.isSubmitted = true;
 
     if (this.categoryForm.invalid) {
@@ -83,16 +88,23 @@ export class CategoryComponent implements OnInit {
     }
 
     this.persist(new Category(this.categoryForm.value.name, this.categoryForm.value.backgroundColor));
+    this.submitTitle = 'Save';
   }
 
   removeCateg(item: Category) {
+    this.submitTitle = 'Delete';
     this.crudType = CrudType.DELETE;
-    this.persist(item);
+    this.categoryForm.setValue(item);
+    this.isSubmitted = false;
+    this.isReadOnly = true;
+
+    console.log('delete', item.name, this.submitTitle, this.isReadOnly);
   }
 
   private persist(item: Category) {
+    console.log('persist', this.crudType, item);
     this.categService.save(this.crudType, item);
-    this.gridOptions.api.setRowData(this.categService.getData());
+    // this.gridOptions.api.setRowData(this.categService.getData());
   }
   get txtCategName() { return this.categoryForm.get('name'); }
 }

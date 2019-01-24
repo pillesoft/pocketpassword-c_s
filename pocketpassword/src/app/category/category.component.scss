@@ -1,52 +1,52 @@
-.listcontainer {
-	position: relative;
-	z-index: 2;
-    border-top: 1px solid #e6e6e6;
-    float: left;
-}
+// .listcontainer {
+// 	position: relative;
+// 	z-index: 2;
+//     border-top: 1px solid #e6e6e6;
+//     float: left;
+// }
 
-.todo-list {
-	margin: 0;
-	padding: 0;
-    list-style: none;
-    border: 1px solid #ddd;
-}
+// .todo-list {
+// 	margin: 0;
+// 	padding: 0;
+//     list-style: none;
+//     border: 1px solid #ddd;
+// }
 
-.todo-list li {
-	//position: relative;
-    font-size: 24px;
-    padding: 8px 16px;
-    border-bottom: 1px solid #ededed;
-    cursor: pointer;
-    transition: color 0.4s;
-    word-break: break-all;
-}
+// .todo-list li {
+// 	//position: relative;
+//     font-size: 24px;
+//     padding: 8px 16px;
+//     border-bottom: 1px solid #ededed;
+//     cursor: pointer;
+//     transition: color 0.4s;
+//     word-break: break-all;
+// }
 
-.todo-list li:last-child {
-	border-bottom: none;
-}
+// .todo-list li:last-child {
+// 	border-bottom: none;
+// }
 
-.todo-list li label {
-	word-break: break-all;
-	padding: 15px 60px 15px 15px;
-	margin-left: 45px;
-	display: block;
-	line-height: 1.2;
-	transition: color 0.4s;
-}
+// .todo-list li label {
+// 	word-break: break-all;
+// 	padding: 15px 60px 15px 15px;
+// 	margin-left: 45px;
+// 	display: block;
+// 	line-height: 1.2;
+// 	transition: color 0.4s;
+// }
 
-.todo-list li .destroy:hover {
-    color: #af5b5e;
-    cursor: pointer;
-}
+// .todo-list li .destroy:hover {
+//     color: #af5b5e;
+//     cursor: pointer;
+// }
 
-.todo-list li .destroy:after {
-	content: '×';
-}
+// .todo-list li .destroy:after {
+// 	content: '×';
+// }
 
-  .todo-list li .destroy {
-    margin-left: 20px;
-  }
+//   .todo-list li .destroy {
+//     margin-left: 20px;
+//   }
 
 // ul {
 //     list-style-type: none;
